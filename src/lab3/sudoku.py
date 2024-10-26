@@ -178,12 +178,17 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
         if len(row) != n or len(col) != n:
             return False
 
+    """Проверяем элементы каждого блока"""
+
     for i in range(0, 9, 3):
         for j in range(0, 9, 3):
             block = set()
         for x in range(i, i + 3):
             for y in range(j, j + 3):
-                block.add(solution[x][y])
+                if solution[x][y] == ".":
+                    return False
+                else:
+                    block.add(solution[x][y])
         if len(block) != n:
             return False
 
